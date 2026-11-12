@@ -7,12 +7,44 @@
 <meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/><link rel="manifest" href="./manifest.webmanifest"/><link rel="apple-touch-icon" href="./icon-192.png"/>
 <title>Footwork Trainer</title>
 <style>
-:root{color-scheme:dark;--bg:#101b25;--panel:#1d2d39;--text:#f5f7fb;--muted:#bac8d3;--green:#38efc5;--yellow:#ffde20}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;background:var(--bg);color:var(--text)}button,input,select{font:inherit}button{cursor:pointer;border:0;border-radius:10px;padding:11px 13px;background:#34495a;color:white;font-weight:700}button:disabled{opacity:.4;cursor:not-allowed}button.primary{background:#13b99b;color:#051b17}button.stop{background:#c34f56}.app{max-width:1050px;margin:0 auto;padding:12px;display:grid;gap:10px}.top{display:flex;align-items:center;justify-content:space-between;gap:8px}.top h1{font-size:17px;margin:0}.state{border-radius:30px;background:#293a47;padding:6px 10px;font-size:12px;white-space:nowrap}.stage{position:relative;width:100%;aspect-ratio:16/9;background:#263e42;border-radius:14px;overflow:hidden;touch-action:none;isolation:isolate}.stage video{position:absolute;width:100%;height:100%;inset:0;object-fit:cover;transform:scaleX(-1)}.stage.rear video{transform:none}.fake{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(125deg,#2a504c,#273d48);color:#b7cecc;text-align:center;padding:15px;font-size:13px;pointer-events:none}.court{position:absolute;inset:7%;border:2px solid #ffffff33;pointer-events:none}.court:before{content:"";position:absolute;top:50%;width:100%;border-top:1px solid #ffffff30}.court:after{content:"";position:absolute;left:50%;height:100%;border-left:1px solid #ffffff30}.roi{position:absolute;border:3px dashed var(--green);background:#1cf3c224;box-shadow:0 0 0 1px #003b3b;border-radius:7px;z-index:4;cursor:move;touch-action:none}.roi span{position:absolute;left:50%;top:100%;transform:translateX(-50%);padding:2px 6px;border-radius:0 0 6px 6px;background:#064e48;font-size:11px;white-space:nowrap}.roi.detected{border-style:solid;background:#37ffd240}.signal{position:absolute;width:clamp(42px,9vw,100px);aspect-ratio:1;border-radius:50%;background:#ffdf27;border:5px solid white;box-shadow:0 0 0 8px #ffde2050,0 0 40px #ffdc35;transform:translate(-50%,-50%);display:none;z-index:5;pointer-events:none}.signal.on{display:block}.pos0{left:17%;top:19%}.pos1{left:83%;top:19%}.pos2{left:17%;top:50%}.pos3{left:83%;top:50%}.pos4{left:17%;top:81%}.pos5{left:83%;top:81%}.person{position:absolute;border-radius:50%;height:14px;width:14px;background:#fff;border:2px solid #18d6ff;z-index:4;transform:translate(-50%,-50%);display:none;pointer-events:none}.stage-label{position:absolute;top:8px;left:8px;background:#0009;border-radius:8px;padding:5px 8px;font-size:12px;pointer-events:none;z-index:6}.hud{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.metric{background:var(--panel);border-radius:11px;text-align:center;padding:9px 5px;min-width:0}.metric small{display:block;color:var(--muted);font-size:12px}.metric strong{display:block;font-size:clamp(20px,4vw,32px);font-variant-numeric:tabular-nums}.actions{display:flex;gap:8px}.actions>button{flex:1}.settings{background:var(--panel);border-radius:12px;padding:12px;display:grid;gap:12px}.settings h2{margin:0;font-size:15px}.settings-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:grid;gap:6px}.field label{color:#d1e0e6;font-size:13px}.field input[type=range]{width:100%;accent-color:#25e2be}.field select,.field input[type=number]{width:100%;min-height:39px;background:#142532;color:white;border:1px solid #49606d;border-radius:8px;padding:7px}.check{display:flex;align-items:center;gap:8px;font-size:13px}.check input{accent-color:#22d7b7}.hint{color:#b8cbd5;font-size:12px;line-height:1.5;margin:0}.footer{display:flex;flex-wrap:wrap;gap:6px}.footer button{font-size:12px}.error{color:#ffbdc1}.good{color:#7ff7dc}.status{font-size:13px;min-height:20px;color:#c2d8dd}.hidden{display:none!important}@media(min-width:780px){.app{grid-template-columns:minmax(0,2fr) minmax(280px,1fr);align-items:start}.top{grid-column:1/-1}.left,.right{display:grid;gap:10px}.stage{aspect-ratio:4/3}.settings-grid{grid-template-columns:1fr}.signal{width:80px}}@media(orientation:landscape) and (max-height:560px){.app{padding:5px;gap:5px;grid-template-columns:minmax(0,1fr) 245px}.top{grid-column:1/-1}.top h1{font-size:13px}.stage{aspect-ratio:16/9}.right{max-height:calc(100dvh - 40px);overflow:auto}.settings{padding:7px}.settings-grid{grid-template-columns:1fr 1fr}.metric{padding:4px}.metric strong{font-size:20px}.actions button{padding:8px}.stage-label{font-size:10px}} 
+:root{color-scheme:dark;--bg:#101b25;--panel:#1d2d39;--text:#f5f7fb;--muted:#bac8d3;--green:#38efc5;--signal-color:#ff355e}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;background:var(--bg);color:var(--text)}button,input,select{font:inherit}button{cursor:pointer;border:0;border-radius:10px;padding:11px 13px;background:#34495a;color:white;font-weight:700}button:disabled{opacity:.4;cursor:not-allowed}button.primary{background:#13b99b;color:#051b17}button.stop{background:#c34f56}.app{max-width:1050px;margin:0 auto;padding:12px;display:grid;gap:10px}.top{display:flex;align-items:center;justify-content:space-between;gap:8px}.top h1{font-size:17px;margin:0}.state{border-radius:30px;background:#293a47;padding:6px 10px;font-size:12px;white-space:nowrap}.stage{position:relative;width:100%;aspect-ratio:16/9;background:#263e42;border-radius:14px;overflow:hidden;touch-action:none;isolation:isolate}.stage video{position:absolute;width:100%;height:100%;inset:0;object-fit:cover;transform:scaleX(-1)}.stage.rear video{transform:none}.fake{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(125deg,#2a504c,#273d48);color:#b7cecc;text-align:center;padding:15px;font-size:13px;pointer-events:none}.court{position:absolute;inset:7%;border:2px solid #ffffff33;pointer-events:none}.court:before{content:"";position:absolute;top:50%;width:100%;border-top:1px solid #ffffff30}.court:after{content:"";position:absolute;left:50%;height:100%;border-left:1px solid #ffffff30}.roi{position:absolute;border:3px dashed var(--green);background:#1cf3c224;box-shadow:0 0 0 1px #003b3b;border-radius:7px;z-index:4;cursor:move;touch-action:none}.roi span{position:absolute;left:50%;top:100%;transform:translateX(-50%);padding:2px 6px;border-radius:0 0 6px 6px;background:#064e48;font-size:11px;white-space:nowrap}.roi.detected{border-style:solid;background:#37ffd240}.signal{position:absolute;width:clamp(42px,9vw,100px);aspect-ratio:1;border-radius:50%;background:var(--signal-color);border:5px solid white;box-shadow:0 0 0 8px #0008,0 0 30px var(--signal-color);transform:translate(-50%,-50%);display:none;z-index:5;pointer-events:none}.signal.on{display:block}.pos0{left:17%;top:19%}.pos1{left:83%;top:19%}.pos2{left:17%;top:50%}.pos3{left:83%;top:50%}.pos4{left:17%;top:81%}.pos5{left:83%;top:81%}.person{position:absolute;border-radius:50%;height:14px;width:14px;background:#fff;border:2px solid #18d6ff;z-index:4;transform:translate(-50%,-50%);display:none;pointer-events:none}.stage-label{position:absolute;top:8px;left:8px;background:#0009;border-radius:8px;padding:5px 8px;font-size:12px;pointer-events:none;z-index:6}.hud{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.metric{background:var(--panel);border-radius:11px;text-align:center;padding:9px 5px;min-width:0}.metric small{display:block;color:var(--muted);font-size:12px}.metric strong{display:block;font-size:clamp(20px,4vw,32px);font-variant-numeric:tabular-nums}.actions{display:flex;gap:8px}.actions>button{flex:1}.settings{background:var(--panel);border-radius:12px;padding:12px;display:grid;gap:12px}.settings h2{margin:0;font-size:15px}.settings-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:grid;gap:6px}.field label{color:#d1e0e6;font-size:13px}.field input[type=range]{width:100%;accent-color:#25e2be}.field select,.field input[type=number]{width:100%;min-height:39px;background:#142532;color:white;border:1px solid #49606d;border-radius:8px;padding:7px}.check{display:flex;align-items:center;gap:8px;font-size:13px}.check input{accent-color:#22d7b7}.hint{color:#b8cbd5;font-size:12px;line-height:1.5;margin:0}.footer{display:flex;flex-wrap:wrap;gap:6px}.footer button{font-size:12px}.error{color:#ffbdc1}.good{color:#7ff7dc}.status{font-size:13px;min-height:20px;color:#c2d8dd}.hidden{display:none!important}@media(min-width:780px){.app{grid-template-columns:minmax(0,2fr) minmax(280px,1fr);align-items:start}.top{grid-column:1/-1}.left,.right{display:grid;gap:10px}.stage{aspect-ratio:4/3}.settings-grid{grid-template-columns:1fr}.signal{width:80px}}@media(orientation:landscape) and (max-height:560px){.app{padding:5px;gap:5px;grid-template-columns:minmax(0,1fr) 245px}.top{grid-column:1/-1}.top h1{font-size:13px}.stage{aspect-ratio:16/9}.right{max-height:calc(100dvh - 40px);overflow:auto}.settings{padding:7px}.settings-grid{grid-template-columns:1fr 1fr}.metric{padding:4px}.metric strong{font-size:20px}.actions button{padding:8px}.stage-label{font-size:10px}} 
+
+@media(orientation:portrait){.stage{aspect-ratio:9/16}}
+/* Ver.4: portrait training overlay. All positions are proportional to stage. */
+.hud{grid-template-columns:repeat(5,minmax(0,1fr))}
+.metric strong{font-size:clamp(16px,3vw,27px)}
+.trainingOverlay{display:none;pointer-events:none;position:absolute;inset:0;z-index:9}
+.trainingHeader,.trainingBottom{position:absolute;left:8px;right:8px;display:flex;align-items:center;justify-content:space-between;gap:6px}
+.trainingHeader{top:env(safe-area-inset-top,10px);padding-top:8px}
+.trainingBottom{bottom:env(safe-area-inset-bottom,10px);padding-bottom:8px}
+.trainingHeader span,.trainingReaction{border-radius:10px;padding:7px 10px;background:#06131dce;font-size:17px;font-weight:bold}
+.trainingBottom button{pointer-events:auto;background:#bd3548;border:2px solid white;border-radius:10px;font-size:16px}
+.trainingBottom #fullTest{background:#385b77}
+body.training{overflow:hidden}
+body.training .app{display:block;max-width:none;margin:0;padding:0}
+body.training .top,body.training .right,body.training .hud,body.training .actions,body.training .status{display:none}
+body.training .left{display:block}
+body.training .stage{position:fixed;inset:0;width:100vw;height:100dvh;aspect-ratio:auto;border-radius:0;z-index:100;background:#111}
+body.training .stage-label{display:none}
+body.training .trainingOverlay{display:block}
+body.training .signal{width:min(20vw,110px);border-width:5px}
+body.training .roi{opacity:.35}
+body.training .roi span{display:none}
+.countdownView{display:none;position:absolute;inset:0;z-index:20;align-items:center;justify-content:center;flex-direction:column;background:#06141ad9;pointer-events:none}
+.countdownView.visible{display:flex}
+.countdownNumber{font-size:min(43vw,220px);font-weight:900;line-height:1;color:#fff;text-shadow:0 0 34px #000}
+.countdownText{font-size:22px;font-weight:800;letter-spacing:.06em;color:#c7fff0;margin-top:16px}
+.resultPanel{display:none;position:fixed;inset:0;z-index:500;background:#07121ddd;align-items:center;justify-content:center;padding:16px}
+.resultPanel.visible{display:flex}
+.resultCard{max-width:430px;width:100%;padding:28px 20px;border-radius:20px;background:#1b3443;border:1px solid #597480;text-align:center;box-shadow:0 16px 55px #0009}
+.resultCard h2{margin:0 0 16px;font-size:25px}.resultAvg{font-size:clamp(38px,11vw,62px);font-weight:900;color:#5df0cb;font-variant-numeric:tabular-nums;margin:4px 0}.resultMeta{color:#d1dfe6;margin:8px 0 24px;line-height:1.8}.resultCard button{width:100%;background:#13b99b;color:#051b17;font-size:17px}
+@media(max-width:560px){.hud{grid-template-columns:repeat(3,minmax(0,1fr))}.metric strong{font-size:18px}}
+
 </style>
 </head>
 <body>
 <div class="app">
- <div class="top"><h1>🏸 FOOTWORK TRAINER <small style="font-weight:400;font-size:11px">Ver.2 Offline</small></h1><div class="state" id="state">準備中</div></div>
+ <div class="top"><h1>🏸 FOOTWORK TRAINER <small style="font-weight:400;font-size:11px">Ver.4 Offline</small></h1><div class="state" id="state">準備中</div></div>
  <main class="left">
   <div class="stage" id="stage">
    <video id="video" autoplay muted playsinline></video>
@@ -21,9 +53,10 @@
    <div class="stage-label" id="cameraLabel">インカメラ / 映像待機</div>
    <div class="roi" id="roi"><span>ホーム検知枠（ドラッグで移動）</span></div>
    <div class="person" id="person"></div>
-   <div class="signal pos0" id="signal" aria-label="方向指示"></div>
+   <div class="trainingOverlay" id="trainingOverlay"><div class="trainingHeader"><span id="fullCounter">0 回</span><span id="fullClock">60.0 秒</span></div><div class="trainingBottom"><div class="trainingReaction" id="fullReaction">反応 —</div><button type="button" id="fullTest" class="hidden">動作テスト</button><button type="button" id="fullStop" class="stop">■ 終了</button></div></div>
+   <div class="countdownView" id="countdownView" aria-live="polite"><div id="countdownNumber" class="countdownNumber">5</div><div id="countdownText" class="countdownText">開始まで</div></div><div class="signal pos0" id="signal" aria-label="方向指示"></div>
   </div>
-  <div class="hud"><div class="metric"><small id="clockLabel">残り時間</small><strong id="clock">60.0</strong></div><div class="metric"><small>指示回数</small><strong id="count">0</strong></div><div class="metric"><small>直前の指示</small><strong id="direction" style="font-size:clamp(16px,3vw,25px)">—</strong></div></div>
+  <div class="hud"><div class="metric"><small id="clockLabel">残り時間</small><strong id="clock">60.0</strong></div><div class="metric"><small>指示回数</small><strong id="count">0</strong></div><div class="metric"><small>直前の指示</small><strong id="direction" style="font-size:clamp(16px,3vw,25px)">—</strong></div><div class="metric"><small>直前の反応時間</small><strong id="reaction">—</strong></div><div class="metric"><small>平均反応時間</small><strong id="avgReaction">—</strong></div></div>
   <div class="actions"><button class="primary" id="start">▶ スタート</button><button id="stop" disabled>■ 停止</button><button id="reset">↺ リセット</button></div>
   <div class="status" id="status" role="status">カメラの準備をしています…</div>
  </main>
@@ -34,63 +67,84 @@
     <div class="field"><label for="mode">練習モード</label><select id="mode"><option value="time">時間制</option><option value="reps">回数制</option></select></div>
     <div class="field" id="timeField"><label for="duration">設定時間（秒）</label><input type="number" id="duration" min="5" max="3600" step="5" value="60"></div>
     <div class="field hidden" id="repsField"><label for="reps">目標回数</label><input type="number" id="reps" min="1" max="999" step="1" value="20"></div>
-    <div class="field"><label for="dotDuration">黄色い丸の点灯時間</label><select id="dotDuration"><option value="500">0.5秒</option><option value="1000" selected>1.0秒</option><option value="1500">1.5秒</option><option value="2000">2.0秒</option></select></div>
+    <div class="field"><label for="signalColor">ポイントの色</label><select id="signalColor"><option value="#ff355e" selected>赤（おすすめ）</option><option value="#13d8ff">水色</option><option value="#a855f7">紫</option><option value="#ffffff">白</option><option value="#ffde20">黄色</option><option value="#42f567">緑</option></select></div>
+    <div class="field"><label for="dotDuration">ポイントの点灯時間</label><select id="dotDuration"><option value="500">0.5秒</option><option value="1000" selected>1.0秒</option><option value="1500">1.5秒</option><option value="2000">2.0秒</option></select></div>
     <div class="field"><label for="roiWidth">検知枠の横幅 <output id="wval">30%</output></label><input type="range" min="10" max="85" value="30" id="roiWidth"></div>
     <div class="field"><label for="roiHeight">検知枠の高さ <output id="hval">36%</output></label><input type="range" min="10" max="85" value="36" id="roiHeight"></div>
     <div class="field"><label for="sensitivity">検知感度 <output id="sval">標準</output></label><input type="range" min="4" max="30" step="2" value="12" id="sensitivity"></div>
     <div class="field"><label for="cameraFacing">カメラ</label><select id="cameraFacing"><option value="user">インカメラ（推奨）</option><option value="environment">背面カメラ</option></select></div>
    </div>
+   <label class="check"><input type="checkbox" id="portraitFullscreen" checked> スタート時に縦向き全画面を試す</label>
    <label class="check"><input type="checkbox" id="sound" checked> 指示音を鳴らす</label>
    <label class="check"><input type="checkbox" id="noRepeat"> 連続で同じ方向を出さない</label>
    <label class="check"><input type="checkbox" id="testMode"> カメラなしのテストモード</label>
    <div class="footer"><button id="calibrate">🎯 背景を登録（枠を空にする）</button><button id="cameraButton">📷 カメラ開始・再試行</button><button id="testTrigger">🟡 指示をテスト</button><button id="fullscreen">⛶ 全画面</button></div>
    <p class="hint">固定したカメラで背景との差を測定します。まず選手が枠の外に出て「背景を登録」を押してください。選手が枠内に約0.25秒入ると指示が出ます。次の指示には、いったん枠外に出てから戻る必要があります。枠は指で移動できます。</p>
+   <p class="hint">反応時間は指示表示から検知枠の外へ動き始めたことを映像で判定するまでの推定時間です。枠の外に出るまでの距離・検知感度・照明にも左右されます。専用計測機器の精度ではありません。</p>
+   <p class="hint">スタート後は5秒カウントダウンしてから練習時計が動きます。終了時に、計測できた全指示の平均反応時間を表示します。<br>全画面や画面の縦固定はAndroidブラウザの対応状況によります。縦向きに持ってスタートするのが確実です。トレーニング中は画面下の「終了」で戻れます。</p>
    <p class="hint">完全オフライン処理版：外部ライブラリ・AIモデル・ネット通信は不要です。ただし「人専用のAI認識」ではなく映像の背景差分で判定します。カメラの使用にはHTTPSでの初回インストール等が必要です。</p>
   </div>
  </aside>
 </div>
+<div class="resultPanel" id="resultPanel" role="dialog" aria-modal="true" aria-labelledby="resultTitle"><div class="resultCard"><h2 id="resultTitle">🏸 トレーニング結果</h2><div>平均反応時間</div><div class="resultAvg" id="resultAvg">—</div><div class="resultMeta" id="resultMeta"></div><button id="resultClose" type="button">結果を閉じる</button></div></div>
 <script type="module">
 const $=id=>document.getElementById(id);
-const ui={stage:$('stage'),video:$('video'),fake:$('fake'),roi:$('roi'),signal:$('signal'),person:$('person'),state:$('state'),status:$('status'),clock:$('clock'),clockLabel:$('clockLabel'),count:$('count'),direction:$('direction'),start:$('start'),stop:$('stop'),reset:$('reset'),mode:$('mode'),duration:$('duration'),reps:$('reps'),dotDuration:$('dotDuration'),roiWidth:$('roiWidth'),roiHeight:$('roiHeight'),cameraFacing:$('cameraFacing'),testMode:$('testMode'),testTrigger:$('testTrigger'),cameraButton:$('cameraButton'),noRepeat:$('noRepeat'),sound:$('sound'),cameraLabel:$('cameraLabel'),calibrate:$('calibrate'),sensitivity:$('sensitivity')};
+const ui={stage:$('stage'),video:$('video'),fake:$('fake'),roi:$('roi'),signal:$('signal'),person:$('person'),state:$('state'),status:$('status'),clock:$('clock'),clockLabel:$('clockLabel'),count:$('count'),direction:$('direction'),start:$('start'),stop:$('stop'),reset:$('reset'),mode:$('mode'),duration:$('duration'),reps:$('reps'),dotDuration:$('dotDuration'),roiWidth:$('roiWidth'),roiHeight:$('roiHeight'),cameraFacing:$('cameraFacing'),testMode:$('testMode'),testTrigger:$('testTrigger'),cameraButton:$('cameraButton'),noRepeat:$('noRepeat'),sound:$('sound'),cameraLabel:$('cameraLabel'),calibrate:$('calibrate'),sensitivity:$('sensitivity'),signalColor:$('signalColor'),reaction:$('reaction'),avgReaction:$('avgReaction'),portraitFullscreen:$('portraitFullscreen'),fullClock:$('fullClock'),fullCounter:$('fullCounter'),fullReaction:$('fullReaction'),trainingOverlay:$('trainingOverlay'),fullStop:$('fullStop'),fullTest:$('fullTest'),countdownView:$('countdownView'),countdownNumber:$('countdownNumber'),countdownText:$('countdownText'),resultPanel:$('resultPanel'),resultAvg:$('resultAvg'),resultMeta:$('resultMeta'),resultClose:$('resultClose')};
 const names=['左上','右上','左中','右中','左下','右下'];
 // このバージョンは外部への通信を行わず、映像の背景差分だけで検知する。
 let stream=null,cameraReady=false,backgroundReady=false,running=false,completed=false,insideSince=0,outsideSince=0,hasLeft=false,wasInside=false,currentSignal=-1,signalUntil=0,signalTimeout=0,signalCount=0,deadline=0,remainingMs=60000,lastInference=0,audioCtx=null;
 const canvas=document.createElement('canvas');canvas.width=160;canvas.height=90;
 const ctx=canvas.getContext('2d',{willReadFrequently:true});
 let baseline=null;let lastChanged=0;
+let cueAt=0,awaitingReaction=false,reactionTimes=[],lastReaction=null,fullscreenRequested=false,settledOutside=false;
+let countdownActive=false,countdownEnd=0,lastCountdownDigit=0,finalSignalTimeout=0,sessionId=0;
 let roi={x:.5,y:.53,w:.3,h:.36},drag=null;
 const clamp=(n,a,b)=>Math.min(b,Math.max(a,n));
 function say(msg,cls=''){ui.status.textContent=msg;ui.status.className='status '+cls;}
 function setState(msg){ui.state.textContent=msg;}
 function renderRoi(){ui.roi.style.left=((roi.x-roi.w/2)*100)+'%';ui.roi.style.top=((roi.y-roi.h/2)*100)+'%';ui.roi.style.width=roi.w*100+'%';ui.roi.style.height=roi.h*100+'%';$('wval').textContent=Math.round(roi.w*100)+'%';$('hval').textContent=Math.round(roi.h*100)+'%';}
 renderRoi();
-ui.roi.addEventListener('pointerdown',ev=>{if(running)return;ev.preventDefault();ui.roi.setPointerCapture(ev.pointerId);const r=ui.stage.getBoundingClientRect();drag={id:ev.pointerId,x:ev.clientX,y:ev.clientY,cx:roi.x,cy:roi.y,w:r.width,h:r.height};});
+ui.roi.addEventListener('pointerdown',ev=>{if(running||countdownActive)return;ev.preventDefault();ui.roi.setPointerCapture(ev.pointerId);const r=ui.stage.getBoundingClientRect();drag={id:ev.pointerId,x:ev.clientX,y:ev.clientY,cx:roi.x,cy:roi.y,w:r.width,h:r.height};});
 ui.roi.addEventListener('pointermove',ev=>{if(!drag||drag.id!==ev.pointerId)return;roi.x=clamp(drag.cx+(ev.clientX-drag.x)/drag.w,roi.w/2,1-roi.w/2);roi.y=clamp(drag.cy+(ev.clientY-drag.y)/drag.h,roi.h/2,1-roi.h/2);renderRoi();});
 for(const eventName of ['pointerup','pointercancel','lostpointercapture'])ui.roi.addEventListener(eventName,()=>drag=null);
 ui.roiWidth.oninput=()=>{roi.w=Number(ui.roiWidth.value)/100;roi.x=clamp(roi.x,roi.w/2,1-roi.w/2);renderRoi();};
 ui.roiHeight.oninput=()=>{roi.h=Number(ui.roiHeight.value)/100;roi.y=clamp(roi.y,roi.h/2,1-roi.h/2);renderRoi();};
 function numberSetting(el,min,max){let v=Number(el.value);if(!Number.isFinite(v))v=min;v=clamp(Math.round(v),min,max);el.value=v;return v;}
 function totalMillis(){return numberSetting(ui.duration,5,3600)*1000;}
-function updateHud(){ui.count.textContent=String(signalCount);ui.clockLabel.textContent=ui.mode.value==='time'?'残り時間':'目標回数';ui.clock.textContent=ui.mode.value==='time'?(Math.max(0,remainingMs)/1000).toFixed(1):numberSetting(ui.reps,1,999).toString();}
+function updateHud(){ui.fullCounter.textContent=signalCount+' 回';ui.fullClock.textContent=ui.mode.value==='time'?(Math.max(0,remainingMs)/1000).toFixed(1)+' 秒':signalCount+' / '+numberSetting(ui.reps,1,999)+' 回';ui.count.textContent=String(signalCount);ui.clockLabel.textContent=ui.mode.value==='time'?'残り時間':'目標回数';ui.clock.textContent=ui.mode.value==='time'?(Math.max(0,remainingMs)/1000).toFixed(1):numberSetting(ui.reps,1,999).toString();}
 function lockSettings(flag){for(const el of [ui.mode,ui.duration,ui.reps,ui.dotDuration,ui.cameraFacing,ui.testMode,ui.noRepeat,ui.roiWidth,ui.roiHeight,ui.sensitivity])el.disabled=flag;ui.roi.style.pointerEvents=flag?'none':'auto';}
-function drawSignal(index){currentSignal=index;ui.signal.className='signal pos'+index+' on';ui.direction.textContent=names[index];clearTimeout(signalTimeout);const ms=Number(ui.dotDuration.value);signalUntil=performance.now()+ms;signalTimeout=setTimeout(clearSignal,ms);}
+function drawSignal(index){currentSignal=index;cueAt=performance.now();awaitingReaction=true;settledOutside=false;ui.signal.className='signal pos'+index+' on';ui.direction.textContent=names[index];clearTimeout(signalTimeout);const ms=Number(ui.dotDuration.value);signalUntil=performance.now()+ms;signalTimeout=setTimeout(clearSignal,ms);}
 function clearSignal(){ui.signal.className='signal';currentSignal=-1;signalUntil=0;}
+function registerReaction(now){if(!awaitingReaction)return;awaitingReaction=false;const ms=Math.max(0,now-cueAt);reactionTimes.push(ms);lastReaction=ms;const avg=reactionTimes.reduce((a,b)=>a+b,0)/reactionTimes.length;ui.reaction.textContent=(ms/1000).toFixed(2)+'秒';ui.avgReaction.textContent=(avg/1000).toFixed(2)+'秒';ui.fullReaction.textContent='反応 '+(ms/1000).toFixed(2)+'秒';if(running&&ui.mode.value==='reps'&&signalCount>=numberSetting(ui.reps,1,999)){clearTimeout(finalSignalTimeout);finish();}}
+function applyColor(){document.documentElement.style.setProperty('--signal-color',ui.signalColor.value);try{localStorage.setItem('footwork_signal_color',ui.signalColor.value)}catch(e){}}
+try{const c=localStorage.getItem('footwork_signal_color');if([...ui.signalColor.options].some(o=>o.value===c))ui.signalColor.value=c;}catch(e){}
+ui.signalColor.onchange=applyColor;applyColor();
+async function enterTrainingView(){document.body.classList.add('training');ui.fullTest.classList.toggle('hidden',!ui.testMode.checked);if(!ui.portraitFullscreen.checked)return;fullscreenRequested=true;try{await document.documentElement.requestFullscreen?.()}catch(e){say('縦全画面は許可されませんでした。通常画面で継続します。')}try{await screen.orientation?.lock?.('portrait')}catch(e){/* ブラウザ制限時は端末の向きに従う */}}
+function exitTrainingView(){document.body.classList.remove('training');if(fullscreenRequested&&document.fullscreenElement)document.exitFullscreen?.().catch(()=>{});fullscreenRequested=false;try{screen.orientation?.unlock?.()}catch(e){}}
 function beep(frequency=900){if(!ui.sound.checked)return;try{audioCtx??=new(window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume();const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();osc.type='sine';osc.frequency.value=frequency;gain.gain.setValueAtTime(.0001,audioCtx.currentTime);gain.gain.exponentialRampToValueAtTime(.12,audioCtx.currentTime+.015);gain.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+.16);osc.connect(gain);gain.connect(audioCtx.destination);osc.start();osc.stop(audioCtx.currentTime+.18)}catch(e){}}
-function nextSignal(){if(!running)return;let index=Math.floor(Math.random()*6);if(ui.noRepeat.checked&&index===currentSignal){index=(index+1+Math.floor(Math.random()*5))%6;} if(ui.noRepeat.checked&&index===lastDirection){index=(index+1+Math.floor(Math.random()*5))%6;} lastDirection=index;signalCount++;drawSignal(index);beep();updateHud();say('指示：'+names[index]+' — 枠を出てから戻ってください','good');if(ui.mode.value==='reps'&&signalCount>=numberSetting(ui.reps,1,999))setTimeout(()=>{if(running&&signalCount>=numberSetting(ui.reps,1,999))finish()},Number(ui.dotDuration.value));}
+function nextSignal(){if(!running||countdownActive)return;let index=Math.floor(Math.random()*6);if(ui.noRepeat.checked&&index===currentSignal){index=(index+1+Math.floor(Math.random()*5))%6;} if(ui.noRepeat.checked&&index===lastDirection){index=(index+1+Math.floor(Math.random()*5))%6;} lastDirection=index;signalCount++;drawSignal(index);beep();updateHud();say('指示：'+names[index]+' — 枠を出てから戻ってください','good');if(ui.mode.value==='reps'&&signalCount>=numberSetting(ui.reps,1,999)){const token=sessionId;finalSignalTimeout=setTimeout(()=>{if(running&&token===sessionId)finish()},5000);}}
 let lastDirection=-1;
 function resetDetection(){insideSince=0;outsideSince=0;hasLeft=false;wasInside=false;ui.roi.classList.remove('detected');ui.person.style.display='none';}
-function start(){if(running)return;if(!ui.testMode.checked&&(!cameraReady||!backgroundReady)){say('カメラを開始して「背景を登録」を押してください。','error');return;}signalCount=0;lastDirection=-1;clearTimeout(signalTimeout);clearSignal();completed=false;running=true;remainingMs=totalMillis();deadline=performance.now()+remainingMs;resetDetection();updateHud();lockSettings(true);ui.start.disabled=true;ui.stop.disabled=false;setState('練習中');say(ui.testMode.checked?'テスト中：画面の「指示をテスト」を押してください':'ホームポジションの検知枠に入ってください','good');}
-function stop(reset=false){if(running&&ui.mode.value==='time')remainingMs=Math.max(0,deadline-performance.now());running=false;clearTimeout(signalTimeout);clearSignal();lockSettings(false);ui.start.disabled=false;ui.stop.disabled=true;if(reset){completed=false;signalCount=0;remainingMs=totalMillis();lastDirection=-1;ui.direction.textContent='—';resetDetection();setState('待機中');say('リセットしました')}else{setState('停止中');say('トレーニングを停止しました')}updateHud();}
-function finish(){stop(false);completed=true;remainingMs=ui.mode.value==='time'?0:remainingMs;updateHud();setState('終了');say('お疲れさまでした！ '+signalCount+'回の指示を出しました。','good');beep(650);setTimeout(()=>beep(1100),160);}
-ui.start.onclick=start;ui.stop.onclick=()=>stop();ui.reset.onclick=()=>stop(true);
+function hideResults(){ui.resultPanel.classList.remove('visible');}
+function showResults(){const n=reactionTimes.length;const avg=n?reactionTimes.reduce((a,b)=>a+b,0)/n:null;ui.resultAvg.textContent=avg===null?'計測なし':(avg/1000).toFixed(2)+' 秒';ui.resultMeta.textContent='指示回数：'+signalCount+'回 ／ 計測回数：'+n+'回'+(n<signalCount?'（未計測 '+(signalCount-n)+'回）':'');ui.resultPanel.classList.add('visible');}
+function beginWorkout(now){if(!countdownActive)return;countdownActive=false;ui.countdownView.classList.remove('visible');running=true;remainingMs=totalMillis();deadline=now+remainingMs;resetDetection();updateHud();setState('練習中');say(ui.testMode.checked?'テスト中：画面の「動作テスト」を押してください':'ホームポジションの検知枠に入ってください','good');beep(1250);}
+function start(){if(running||countdownActive)return;if(!ui.testMode.checked&&(!cameraReady||!backgroundReady)){say('カメラを開始して「背景を登録」を押してください。','error');return;}
+ sessionId++;clearTimeout(finalSignalTimeout);signalCount=0;lastDirection=-1;reactionTimes=[];lastReaction=null;ui.reaction.textContent='—';ui.avgReaction.textContent='—';ui.fullReaction.textContent='反応 —';clearTimeout(signalTimeout);clearSignal();completed=false;hideResults();running=false;countdownActive=true;remainingMs=totalMillis();resetDetection();updateHud();lockSettings(true);ui.start.disabled=true;ui.stop.disabled=false;setState('開始カウントダウン');ui.countdownView.classList.add('visible');ui.countdownNumber.textContent='5';ui.countdownText.textContent='開始まで';lastCountdownDigit=5;countdownEnd=performance.now()+5000;enterTrainingView();beep(700);say('5秒後にトレーニング開始','good');}
+function stop(reset=false){if(running&&ui.mode.value==='time')remainingMs=Math.max(0,deadline-performance.now());sessionId++;running=false;countdownActive=false;ui.countdownView.classList.remove('visible');awaitingReaction=false;clearTimeout(signalTimeout);clearTimeout(finalSignalTimeout);clearSignal();exitTrainingView();lockSettings(false);ui.start.disabled=false;ui.stop.disabled=true;if(reset){hideResults();completed=false;signalCount=0;remainingMs=totalMillis();lastDirection=-1;ui.direction.textContent='—';reactionTimes=[];lastReaction=null;ui.reaction.textContent='—';ui.avgReaction.textContent='—';ui.fullReaction.textContent='反応 —';resetDetection();setState('待機中');say('リセットしました')}else{setState('停止中');say('トレーニングを停止しました')}updateHud();}
+function finish(){if(!running)return;stop(false);completed=true;remainingMs=ui.mode.value==='time'?0:remainingMs;updateHud();setState('終了');const avg=reactionTimes.length?(reactionTimes.reduce((a,b)=>a+b,0)/reactionTimes.length/1000).toFixed(2)+'秒':'計測なし';say('終了：指示 '+signalCount+'回、計測 '+reactionTimes.length+'回、平均 '+avg,'good');showResults();beep(650);setTimeout(()=>beep(1100),160);}
+ui.resultClose.onclick=hideResults;
+ui.start.onclick=start;ui.stop.onclick=()=>stop();ui.fullStop.onclick=()=>stop();ui.fullTest.onclick=()=>{if(running&&ui.testMode.checked){if(awaitingReaction){registerReaction(performance.now());}else if(currentSignal<0)nextSignal();}};ui.reset.onclick=()=>stop(true);
 ui.mode.onchange=()=>{$('timeField').classList.toggle('hidden',ui.mode.value!=='time');$('repsField').classList.toggle('hidden',ui.mode.value!=='reps');stop(true)};
-for(const el of [ui.duration,ui.reps])el.addEventListener('change',()=>{if(!running){remainingMs=totalMillis();updateHud()}});
-ui.testTrigger.onclick=()=>{if(!running){say('先に「スタート」を押してください');return;}if(currentSignal>=0)return;nextSignal();};
+for(const el of [ui.duration,ui.reps])el.addEventListener('change',()=>{if(!running&&!countdownActive){remainingMs=totalMillis();updateHud()}});
+ui.testTrigger.onclick=()=>{if(!running){say(countdownActive?'カウントダウンが終わるまでお待ちください':'先に「スタート」を押してください');return;}if(awaitingReaction){registerReaction(performance.now());return;}if(currentSignal>=0)return;nextSignal();};
 ui.testMode.onchange=()=>{stop(true);if(ui.testMode.checked){ui.fake.classList.remove('hidden');ui.fake.innerHTML='<div>🧪 テストモード<br><small>「指示をテスト」で6方向の動作を確認</small></div>';setState('テスト準備完了');say('スタートすると、手動でランダム指示を出せます。');}else{ui.fake.classList.toggle('hidden',cameraReady);setState(cameraReady&&backgroundReady?'準備完了':'準備中');}};
 $('fullscreen').onclick=()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.().catch(()=>say('このブラウザでは全画面表示に対応していません'));else document.exitFullscreen?.()};
 ui.cameraFacing.onchange=()=>initializeCamera();ui.cameraButton.onclick=()=>initializeCamera();
 function captureFrame(){
   if(!cameraReady||ui.video.readyState<2)return null;
+  const r=ui.stage.getBoundingClientRect();
+  const targetHeight=window.matchMedia('(orientation:portrait)').matches?284:90;
+  if(canvas.height!==targetHeight){canvas.height=targetHeight;backgroundReady=false;baseline=null;say('表示比率が変わりました。終了後に背景を登録し直してください。');}
   const w=canvas.width,h=canvas.height,vw=ui.video.videoWidth,vh=ui.video.videoHeight;
   if(!vw||!vh)return null;
   // CSS object-fit:cover と同じ切り取り位置に合わせる
@@ -106,7 +160,7 @@ function registerBackground(){
   baseline=new Uint8Array(frame);backgroundReady=true;resetDetection();
   setState('準備完了');say('背景を登録しました。選手が検知枠に入ったら反応します。','good');
 }
-ui.calibrate.onclick=()=>{if(running)stop();registerBackground()};
+ui.calibrate.onclick=()=>{if(running||countdownActive)stop();registerBackground()};
 ui.sensitivity.oninput=()=>{$('sval').textContent=Number(ui.sensitivity.value)<10?'高':Number(ui.sensitivity.value)>16?'低':'標準'};
 function processFrame(now){
   if(!backgroundReady||!baseline)return;
@@ -131,7 +185,7 @@ function processFrame(now){
       else if(currentSignal<0&&hasLeft){hasLeft=false;nextSignal()}
     }
   }else{insideSince=0;if(!outsideSince)outsideSince=now;
-    if(now-outsideSince>=200&&wasInside){wasInside=false;hasLeft=true;}
+    if(now-outsideSince>=200&&wasInside){registerReaction(now);wasInside=false;hasLeft=true;}
   }
 }
 async function initializeCamera(){
@@ -147,10 +201,11 @@ async function initializeCamera(){
   }catch(e){cameraReady=false;backgroundReady=false;ui.fake.classList.remove('hidden');ui.fake.textContent='カメラに接続できません';say('カメラ起動失敗：'+e.message+'。HTTPS・カメラの許可を確認してください。','error');setState('カメラエラー')}
   finally{ui.cameraButton.disabled=false}
 }
-function tick(now){if(running){if(ui.mode.value==='time'){remainingMs=Math.max(0,deadline-now);if(remainingMs===0)finish();updateHud();}}
+function tick(now){if(countdownActive){const left=Math.max(0,countdownEnd-now);const digit=Math.ceil(left/1000);if(digit>0){ui.countdownNumber.textContent=String(digit);if(digit!==lastCountdownDigit){lastCountdownDigit=digit;beep(700);}}else beginWorkout(now);}if(running){if(ui.mode.value==='time'){remainingMs=Math.max(0,deadline-now);if(remainingMs===0)finish();updateHud();}}
  if(cameraReady&&backgroundReady&&!ui.testMode.checked&&ui.video.readyState>=2&&now-lastInference>100){lastInference=now;try{processFrame(now)}catch(e){say('映像検知中に問題が発生しました：'+e.message,'error')}}
  requestAnimationFrame(tick)}
-document.addEventListener('visibilitychange',()=>{if(document.hidden&&running){stop(false);say('画面が非表示になったため安全のため停止しました。')}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&(running||countdownActive)){stop(false);say('画面が非表示になったため安全のため停止しました。')}});
+document.addEventListener('fullscreenchange',()=>{if((running||countdownActive)&&fullscreenRequested&&!document.fullscreenElement){document.body.classList.remove('training');fullscreenRequested=false;}});
 window.addEventListener('pagehide',()=>{if(stream)stream.getTracks().forEach(t=>t.stop())});
 remainingMs=totalMillis();updateHud();requestAnimationFrame(tick);
 if('serviceWorker' in navigator && location.protocol==='https:'){navigator.serviceWorker.register('./sw.js').catch(()=>{});}
